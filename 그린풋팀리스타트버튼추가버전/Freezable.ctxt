@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=Freezable
+comment1.params=count
+comment1.target=void\ freeze(int)
+numComments=2

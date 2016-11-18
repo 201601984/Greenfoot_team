@@ -1,0 +1,34 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class m here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class c extends Actor
+{
+    /**
+     * Act - do whatever the m wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    int moveSpeed = 2;
+    int turnSpeed = 2;
+    
+    int eatScore = 10;
+    public void act() 
+    {
+        if(Greenfoot.isKeyDown("up")) move(moveSpeed);
+        if(Greenfoot.isKeyDown("down")) move(-moveSpeed);
+        if(Greenfoot.isKeyDown("left")) turn(-turnSpeed);
+        if(Greenfoot.isKeyDown("right")) turn(turnSpeed);
+        lookForWorm();
+    }
+    public void lookForWorm()
+    {
+        if(isTouching(w.class)) {
+            MyWorld.score+=eatScore;
+            removeTouching(w.class);
+        }
+    }
+}
