@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    static int worldX = 600;
+    int worldX = 600;
     int worldY = 400;
     static int score = 0;
     int winScore = 500;//승리조건 점수
@@ -30,26 +30,6 @@ public class MyWorld extends World
         addWorm();
         
         showScore();
-        restart();
-    }
-    public void restart()
-    {
-        MouseInfo pointer = Greenfoot.getMouseInfo();
-        if(pointer != null){
-            int mouseX = pointer.getX();
-            int mouseY = pointer.getY();
-            int button = pointer.getButton();
-            if(button==1){
-                if(!getObjects(GameOver.class).isEmpty()){
-                    if(mouseX>(worldX/2)-80&&
-                    mouseX<(worldX/2)+80&&
-                    mouseY>(worldY/2)+40&&
-                    mouseY<(worldY/2)+100) {
-                        reset();
-                    }
-                }
-            }
-        }
     }
     public void addWorm()
     {
@@ -77,24 +57,15 @@ public class MyWorld extends World
     public void lose()
     {
         if(getObjects(Crab.class).isEmpty()) {
-            if(getObjects(GameOver.class).isEmpty()){
-                addObject(new GameOver(),worldX/2,worldY/2);
-                addObject(new Restart(),worldX/2,worldY/2+70);
-            }
+            showText("Game Over",worldX/2,worldY/2);
+            Greenfoot.stop();
         }
     }
     public void reset()
     {
-        removeObjects(getObjects(Crab.class));
-        removeObjects(getObjects(Turtle.class));
-        removeObjects(getObjects(Lobster.class));
-        removeObjects(getObjects(Worm.class));
-        removeObjects(getObjects(GameOver.class));
-        removeObjects(getObjects(Restart.class));
         score = 0;
-        isAdd=false;
-        addObject(new Crab(),ranX(),ranY());
-        addObject(new Turtle(),ranX(),ranY());
+        addObject(new Crab(),50,50);
+        addObject(new Turtle(),300,100);
     }
     public void showScore()
     {

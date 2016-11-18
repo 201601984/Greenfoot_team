@@ -6,46 +6,37 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Crab extends Actor //implements CrabInterface
+public class Crab extends Actor implements CrabInterface
   {
-      private int speed = 5;
     /**
      * Act - do whatever the Lion wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        // Add your action code here.
-      
-        
+        move();
+        edge();
+        lookForWorm();
+    }
+    public void move(){
         if(Greenfoot.isKeyDown("up")){
             turn(-2);
-            
-            
     }    
        if(Greenfoot.isKeyDown("down")){
             turn(2);
-            
-            
     }
-       if(Greenfoot.isKeyDown("right")){
-            move(3);
-            
-            
+    move(3);
     }
-       if(Greenfoot.isKeyDown("left")){
-            move(-3);
-            
-            
+    public void edge(){
+       if(isAtEdge()){
+           turn(17); 
+       }
     }
-            //move(3);
-         /*    if(isAtEdge()){
-        turn(17); 
-       }*/
-       /*if(getOneObjectAtOffset(0,0,Lobster.class)!=null){
-            getWorld().removeObject(this);
-            //Greenfoot.stop();
-        } */
-    
+    public void lookForWorm(){
+        if(isTouching(Worm.class)){
+            removeTouching(Worm.class);
+            MyWorld.score += eatScore;
+        }
+    }
 }
-}
+

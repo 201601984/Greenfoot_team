@@ -6,30 +6,31 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Turtle extends Actor //implements TurtleInterface, Freezable
+public class Turtle extends Lobster implements TurtleInterface, Freezable
 {
-    int counter=100;
-    int freezeTime = 100;
-    int moveTime = 50;
-    public void act() 
-    {
-        //int a = 1+(int)(Math.random()*350);
-        
-        /*if(isAtEdge()){
-        turn(a); 
-       }*/
-       if(isAtEdge()){
-           turn(17); 
+    int counter = 200;
+    public void act() {
+       lookForLobster();
+       if(counter>100){
+           counter--;
+           
+       }
+       else if(counter<=100&&counter>0){
+           super.ranMove(1);
+           counter--;
+       }
+       else{
+           freeze(200);
+           int a = Greenfoot.getRandomNumber(360);
+           turn(a);
         }
-        if(counter<=0) {
-            if(Greenfoot.getRandomNumber(100)<10) {
-                turn(Greenfoot.getRandomNumber(90)-45);
-            }
-            move(1);
-        }if(counter==-moveTime)freeze(freezeTime);
-        else counter--;
+        lookForLobster();
     }
-    public void freeze(int count) {
-        counter = count;
+    public void lookForLobster(){
+       if(isTouching(Lobster.class))
+            removeTouching(Lobster.class);
+    }
+    public void freeze(int count){
+       counter = count;
     }
 }

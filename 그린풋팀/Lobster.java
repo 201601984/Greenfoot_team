@@ -8,26 +8,30 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Lobster extends Actor //implements LobsterInterface
 {
+    int a = Greenfoot.getRandomNumber(360);
     public void act() 
     {
-         //int a = 1+(int)(Math.random()*350);
-        move(2);
-        /*if(isAtEdge()){
+        ranMove(3);
+        lookForCrab();
+    }
+    public void ranMove(int speed){
+        move(speed);
+        int score = 20;
+        if(isAtEdge()){
         turn(a); 
-       }*/
-       if(isAtEdge()){
-           turn(17); 
-        }
-       if(Greenfoot.getRandomNumber(100)<10) {
-           turn(Greenfoot.getRandomNumber(90)-45);
-        }
-       if(isTouching(Crab.class)) {
+       }
+       if(score>0){
+        score--;
+       }
+       else{
+        turn(a);
+        score = 20;
+       }
+    }
+    private void lookForCrab(){
+       if(isTouching(Crab.class))
             removeTouching(Crab.class);
-        }
-       if(getOneObjectAtOffset(0,0,Turtle.class)!=null){
-            getWorld().removeObject(this);
-            
-        } 
-        
+       if(isTouching(Worm.class))
+            removeTouching(Worm.class);
     }
 }
