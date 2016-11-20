@@ -16,17 +16,12 @@ public class Lobster extends Actor //implements LobsterInterface
     }
     public void ranMove(int speed){
         move(speed);
-        int score = 20;
         if(isAtEdge()){
         turn(a); 
        }
-       if(score>0){
-        score--;
-       }
-       else{
-        turn(a);
-        score = 20;
-       }
+       if(Greenfoot.getRandomNumber(100)<7) {
+           turn(Greenfoot.getRandomNumber(90)-45);
+        }
     }
     private void lookForCrab(){
        if(isTouching(Crab.class))

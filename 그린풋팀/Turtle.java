@@ -21,8 +21,6 @@ public class Turtle extends Lobster implements TurtleInterface, Freezable
        }
        else{
            freeze(200);
-           int a = Greenfoot.getRandomNumber(360);
-           turn(a);
         }
         lookForLobster();
     }
